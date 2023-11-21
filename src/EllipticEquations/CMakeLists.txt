@@ -1,0 +1,2 @@
+add_subdirectory(EllipticErrors)
+add_subdirectory(main)
