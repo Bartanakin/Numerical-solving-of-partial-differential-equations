@@ -9,7 +9,7 @@
 #include "../SchemeHyperbolic.h"
 
 int main() {
-    const TypedSetupHyperbolic setup = {20, 1600, 100, 0.5};
+    const TypedSetupHyperbolic setup = {};
 
     auto time_point = std::chrono::steady_clock::now();
     auto [u_matrix, u_matrix_exact] = std::move(scheme_parabolic(setup));

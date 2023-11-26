@@ -18,7 +18,12 @@ run_EllipticErrors:
 build_Parabolic:
 	cmake --build build --target Parabolic --config Debug
 run_Parabolic:
-	./build/src/ParabolicEquations/main/Parabolic.exe
+	./build/src/ParabolicEquations/main/PArabolic.exe
+
+build_Hyperbolic:
+	cmake --build build --target Hyperbolic --config Debug
+run_Hyperbolic:
+	./build/src/Hyperbolic/main/Hyperbolic.exe
 
 build_2Dbase:
 	cmake --build build --target 2Dbase --config Debug

@@ -10,12 +10,12 @@ template<typename T>
 class SetupHyperbolic {
     public:
 
-    SetupHyperbolic(size_t x_num = 10000, size_t = 1000, int output_freq = 10, T alpha = 0.5) :
+    SetupHyperbolic(size_t x_num = 100, size_t t_num = 1000, int output_freq = 10, T alpha = 0) :
         x_range({0, 1}),
         t_range({0, 1}),
         boundary_condition({
-            static_cast<std::function<T(T)>>([] (T t) { return static_cast<T>(0); }),
-            static_cast<std::function<T(T)>>([] (T t) { return static_cast<T>(0); })
+            [] (T t) { return 0; },
+            [] (T t) { return 0; }
         }),
         dx(static_cast<FType>(1) / static_cast<FType>(x_num)),
         dt(static_cast<FType>(1) / static_cast<FType>(t_num)),
@@ -35,7 +35,7 @@ class SetupHyperbolic {
     }
 
     static T initial_der(T x) {
-        return 0.125 * M_PI * std::cos(M_PI * x);
+        return 0;
     }
 
     static T exact(T x, T t) {
