@@ -10,7 +10,7 @@ template<typename T>
 class SetupHyperbolic {
     public:
 
-    SetupHyperbolic(size_t x_num = 100, size_t t_num = 1000, int output_freq = 10, T alpha = 0) :
+    SetupHyperbolic(size_t x_num = 100, size_t t_num = 1000, int output_freq = 10, T alpha = 0.25) :
         x_range({0, 1}),
         t_range({0, 1}),
         boundary_condition({

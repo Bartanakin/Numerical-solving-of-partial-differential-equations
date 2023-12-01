@@ -21,13 +21,13 @@ SetupMatrices create_matrices(const TypedSetupHyperbolic& setup) {
     auto r = setup.dt * setup.dt / setup.dx / setup.dx;
     for (int i = 1; i < u.size() - 1; i++) {
         if (i != 1) {
-            A(i - 2, i - 1) = r * setup.alpha;
+            A(i - 2, i - 1) = - r * setup.alpha;
         }
 
-        A(i - 1, i - 1) = -r * 2.f * setup.alpha + 1.f;
+        A(i - 1, i - 1) = r * 2.f * setup.alpha + 1.f;
         
         if (i != u.size() - 2) {
-            A(i, i - 1) = r * setup.alpha;
+            A(i, i - 1) = - r * setup.alpha;
         }
     }
 
