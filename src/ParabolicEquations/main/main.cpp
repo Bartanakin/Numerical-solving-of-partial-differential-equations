@@ -9,7 +9,7 @@
 #include "../SchemeParabolic.h"
 
 int main() {
-    constexpr const TypedSetupParabolic setup = {20, 1600, 100, 0.5};
+    constexpr const TypedSetupParabolic setup = {40, 2000, 20, 0.5};
 
     auto time_point = std::chrono::steady_clock::now();
     auto [u_matrix, u_matrix_exact] = std::move(scheme_parabolic(setup));
@@ -45,12 +45,19 @@ int main() {
             file << "\n";
         }
     }
+
+    FType maxError = 0.;
     for (DoubleLoopIterator<t_size, setup.x_num> it; it.isValid(); ++it) {
         files[0] << u_matrix(it.i2(), it.i1()) << " ";
         files[1] << u_matrix_exact(it.i2(), it.i1()) << " ";
-        files[2] << abs(u_matrix(it.i2(), it.i1()) - u_matrix_exact(it.i2(), it.i1())) << " ";
+        auto error = abs(u_matrix(it.i2(), it.i1()) - u_matrix_exact(it.i2(), it.i1()));
+        files[2] << error << " ";
+        if (error > maxError) {
+            maxError = error;
+        }
     }
 
+    std::cout << "Max error = " << maxError << std::endl;
 
     return 0;
 }

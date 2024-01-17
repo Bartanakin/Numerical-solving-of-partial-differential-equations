@@ -30,16 +30,17 @@ Eigen::VectorX<FType> scheme_elliptic(const SetupElliptic<FType>& setup) {
     auto b = VecN(N);
 
     for (DoubleIterator it; it.isValid(); ++it) {
+        auto boundary = setup.boundaryCondition(setup.dx * it.i1(), setup.dy * it.i2());
         if (isIndexForInitial<N>(it.total(), setup)) { // Nodes on the bound
-            b(it.total()) = setup.boundary_condition;
+            b(it.total()) = boundary;
         } else {
             b[it.total()] = setup.f(it.i1() * setup.dx, it.i2() * setup.dy);// Nodes inside
             if (it.total() < setup.x_num * 2 || it.total() >= N - 2 * setup.x_num) { // Nodes right next to horizontal bounds
-                b(it.total()) -= setup.boundary_condition * hx;
+                b(it.total()) -= boundary * hx;
             }
 
             if (it.total() % setup.y_num == 1 || it.total() % setup.y_num == setup.y_num - 2) { // Nodes right next to vertical bounds
-                b(it.total()) -= setup.boundary_condition * hy;
+                b(it.total()) -= boundary * hy;
             }
         }
 

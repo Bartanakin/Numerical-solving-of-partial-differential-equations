@@ -27,15 +27,15 @@ class SetupElliptic {
     }
 
     static T f(T x, T y) {
-        return -2 * (x * x + y * y) + 2 * M_PI * M_PI * std::sin(M_PI * x) * std::sin(M_PI * y);
+        return 0;
     }
 
     static T exact(T x, T y) {
-        return x*x * y*y + std::sin(M_PI * x) * std::sin(M_PI * y);
+        return 0;
     }
 
     constexpr T boundaryCondition(T x, T y) const {
-        return x * y * (x + y - 1);
+        return 0;
     }
 
     const std::pair<T, T> x_range;

@@ -42,6 +42,11 @@ int main(int argc, char* argv[]) {
     // std::cout << X.size() << " " << Y.size() << " " << Z.size() << std::endl;
     auto s3 = mesh(X, Y, Z);
 
+    xlabel("Position");
+    ylabel("Time");
+    xrange({0, 1});
+    yrange({0, 1});
+
     show();
 
 
